@@ -57,7 +57,7 @@ VIM allows files management via command line. To work with a file in VIM, the co
 Once you have installed **Docker Desktop for Windows**, navigate to **Resources** within **Settings** panel. Now enable the integration with the desired distro into **WSL Integration** option. Remind you must be using **Docker Desktop** with WSL2 containers instead of Windows or HyperV ones.
 
 
-<a name="debianWSL2DockerLinux">2</a>: To setup Debian Linux distribution running docker and docker compose you can execute [package.sh]() script using sudo to install all the necessary dependencies. Possibly Docker will not start running. To make it run type:
+<a name="debianWSL2DockerLinux">2</a>: To setup Debian Linux distribution running docker and docker compose you can execute [package.sh](https://github.com/lcaparros/vim-ide-docker/blob/main/packages.sh) script using sudo to install all the necessary dependencies. Possibly Docker will not start running. To make it run type:
 
 ```
 $ sudo service docker start
