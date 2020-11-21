@@ -15,8 +15,6 @@ RUN ./packages.sh \
     -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
 RUN rm packages.sh
 
-SHELL ["zsh"]
-
 COPY .vimrc /root/.vimrc
 COPY wombat.vim /root/.vim/colors/wombat.vim
 
