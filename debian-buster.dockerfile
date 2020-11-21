@@ -18,7 +18,7 @@ RUN rm packages.sh
 COPY .vimrc /root/.vimrc
 COPY wombat.vim /root/.vim/colors/wombat.vim
 
-WORKDIR /root
+WORKDIR /root/workspace
 
 VOLUME ["/var/run/docker.sock", "/root/workspace"]
 
