@@ -13,7 +13,7 @@ In adittion, the workspace directory can be shared between host and **vim-ide** 
 
 ### Linux and Mac environment
 ```
-docker run -it --rm --name vim-ide -v /var/run/docker.sock:/var/run/docker.sock -v /home/user/workspace:/root/workspace -p "4000-4100:4000-4100" lcaparros/vim-ide
+docker run -it --rm --name vim-ide -e "TERM=xterm-256color" -v /var/run/docker.sock:/var/run/docker.sock -v /home/user/workspace:/root/workspace -p "4000-4100:4000-4100" lcaparros/vim-ide
 ```
 
 ### Windows environment
@@ -22,8 +22,18 @@ Windows hosts do not count on **/var/run/docker.sock**. In this case Docke use a
 Imagine a Windows host with Debian Linux distribution running over WSL2 and with Docker installed<sup>[1](#debianWSL2DockerDesktop)</sup><sup>[2](#debianWSL2DockerLinux)</sup><sup>[3](#debianUserDocker)</sup>. In this case, the command below would work perfect.
 
 ```
-docker run -it --rm --name vim-ide -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/c/Users/user/workspace:/root/workspace -p "4000-4100:4000-4100" lcaparros/vim-ide
+docker run -it --rm --name vim-ide -e "TERM=xterm-256color" -v /var/run/docker.sock:/var/run/docker.sock -v /mnt/c/Users/user/workspace:/root/workspace -p "4000-4100:4000-4100" lcaparros/vim-ide
 ```
+
+### Customiozed terminal interface
+Those images includes ZSH with Powerlevel10k theme by default with a configuration that includes an insane quantity of icons and characters. To assure a complete compatibility install Nerd Fonts and setup in your terminal emulator.
+
+* [MesloLGS NF Regular.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf)
+* [MesloLGS NF Bold.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf)
+* [MesloLGS NF Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf)
+* [MesloLGS NF Bold Italic.ttf](https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf)
+
+You can also modify p10k.zsh and zshrc files as desired with you own configuration.
 
 ## Basic VIM command list
 ### Text deletion

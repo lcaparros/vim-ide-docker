@@ -1,5 +1,17 @@
 FROM debian:buster
 
+# ARG USERNAME=user
+# ARG USERPASS=pass
+
+# # User setup
+# RUN apt-get update && \
+#     apt-get install -y sudo && \
+#     useradd -m $USERNAME && echo "$USERNAME:$USERPASS" | chpasswd && \
+#     echo $USERNAME ALL=\(root\) NOPASSWD:ALL >> /etc/sudoers
+    # adduser $USERNAME sudo
+
+# USER $USERNAME
+
 COPY packages.sh packages.sh
 RUN ./packages.sh \
     # -t https://github.com/denysdovhan/spaceship-prompt \
@@ -14,6 +26,9 @@ RUN ./packages.sh \
     -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
     -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
 RUN rm packages.sh
+
+COPY p10k.zsh /root/.p10k.zsh
+COPY zshrc /root/.zshrc
 
 COPY .vimrc /root/.vimrc
 COPY wombat.vim /root/.vim/colors/wombat.vim

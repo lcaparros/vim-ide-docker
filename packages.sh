@@ -44,44 +44,14 @@ check_version() {
 }
 
 install_dependencies() {
-    DIST=`check_dist`
-    VERSION=`check_version`
-    echo "###### Installing dependencies for $DIST"
+    apt-get update
+    apt-get -y install git curl wget zsh locales vim xclip
+    locale-gen en_US.UTF-8
 
-    if [ "`id -u`" = "0" ]; then
-        Sudo=''
-    elif which sudo; then
-        Sudo='sudo'
-    else
-        echo "WARNING: 'sudo' command not found. Skipping the installation of dependencies. "
-        echo "If this fails, you need to do one of these options:"
-        echo "   1) Install 'sudo' before calling this script"
-        echo "OR"
-        echo "   2) Install the required dependencies: git curl zsh"
-        return
-    fi
-
-    case $DIST in
-        alpine)
-            $Sudo apk add --update --no-cache git curl wget zsh vim
-        ;;
-        centos | amzn)
-            $Sudo yum update -y
-            $Sudo yum install -y git curl wget vim
-            $Sudo yum install -y ncurses-compat-libs # this is required for AMZN Linux (ref: https://github.com/emqx/emqx/issues/2503) 
-            $Sudo curl http://mirror.ghettoforge.org/distributions/gf/el/7/plus/x86_64/zsh-5.1-1.gf.el7.x86_64.rpm > zsh-5.1-1.gf.el7.x86_64.rpm
-            $Sudo rpm -i zsh-5.1-1.gf.el7.x86_64.rpm
-            $Sudo rm zsh-5.1-1.gf.el7.x86_64.rpm
-        ;;
-        *)
-            $Sudo apt-get update
-            $Sudo apt-get -y install git curl wget zsh locales vim
-            if [ "$VERSION" != "14.04" ]; then
-                $Sudo apt-get -y install locales-all
-            fi
-            $Sudo locale-gen en_US.UTF-8
-            # $Sudo locale-gen es_ES.UTF-8 UTF-8
-    esac
+    # Docker and docker-compose installation
+    curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
+    curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
 }
 
 zshrc_template() {
@@ -116,9 +86,8 @@ POWERLEVEL9K_STATUS_CROSS=true
 EOM
 }
 
-install_dependencies
-
 cd /tmp
+install_dependencies
 
 # Install On-My-Zsh
 if [ ! -d $HOME/.oh-my-zsh ]; then
@@ -156,7 +125,7 @@ if [ "${ZSH_THEME}" = "powerlevel10k/powerlevel10k" ]; then
     powerline10k_config >> $HOME/.zshrc
 fi
 
-# Docker and docker-compose installation
-curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
+# Clean up
+apt-get autoremove -y
+apt-get clean -y
+rm -rf /var/lib/apt/lists/*
