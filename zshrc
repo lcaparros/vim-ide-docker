@@ -15,7 +15,7 @@ export TERM=xterm
 ##### Zsh/Oh-my-Zsh Configuration
 export ZSH="/root/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=()
+plugins=(git)
 
 SPACESHIP_PROMPT_ADD_NEWLINE="false"
 SPACESHIP_PROMPT_SEPARATE_LINE="false"
