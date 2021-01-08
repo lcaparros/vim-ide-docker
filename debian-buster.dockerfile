@@ -35,7 +35,7 @@ COPY wombat.vim /root/.vim/colors/wombat.vim
 
 WORKDIR /root/workspace
 
-VOLUME ["/var/run/docker.sock", "/root/workspace", "/root/.ssh", "/root/.config/git"]
+VOLUME ["/var/run/docker.sock", "/root/.zshrc", "/root/workspace", "/root/.ssh", "/root/.config/git"]
 
 ENTRYPOINT [ "/bin/zsh" ]
 CMD ["-l"]
