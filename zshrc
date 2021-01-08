@@ -29,5 +29,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_STATUS_CROSS=true
 
+[[ ! -f ~/.custom_profile ]] || source ~/.custom_profile
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
