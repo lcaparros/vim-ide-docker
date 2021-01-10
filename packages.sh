@@ -45,8 +45,37 @@ check_version() {
 
 install_dependencies() {
     apt-get update
-    apt-get -y install git curl wget zsh locales vim xclip
+    apt-get -y install git curl wget zsh locales xclip vim
     locale-gen en_US.UTF-8
+
+    # Vim install
+#    apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev \
+#        libcairo2-dev libx11-dev libxpm-dev libxt-dev python2-dev \
+#        python3-dev ruby-dev lua5.2 liblua5.2-dev libperl-dev
+#    apt-get remove vim vim-runtime gvim
+#    git clone https://github.com/vim/vim.git
+#    cd vim
+#    ./configure --with-features=huge \
+#        --enable-multibyte \
+#        --enable-rubyinterp=yes \
+#        --enable-python3interp=yes \
+#        --with-python3-config-dir=$(python3-config --configdir) \
+#        --enable-perlinterp=yes \
+#        --enable-luainterp=yes \
+#        --enable-gui=gtk2 \
+#        --enable-cscope \
+#        --prefix=/usr/local
+#    make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
+
+    # Vim plugin manager
+    # https://github.com/junegunn/vim-plug
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    # Set Vim as default editor
+    update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+    update-alternatives --set editor /usr/local/bin/vim
+    update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+    update-alternatives --set vi /usr/local/bin/vim
 
     # Docker and docker-compose installation
     curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker

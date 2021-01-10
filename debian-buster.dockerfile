@@ -30,8 +30,9 @@ RUN rm packages.sh
 COPY p10k.zsh /root/.p10k.zsh
 COPY zshrc /root/.zshrc
 
-COPY .vimrc /root/.vimrc
-COPY wombat.vim /root/.vim/colors/wombat.vim
+COPY default.vimrc /root/.vimrc
+COPY wombat256mod.vim /root/.vim/colors/wombat256mod.vim
+RUN mkdir /root/.vim/undodir && vim +PlugInstall +qall
 
 WORKDIR /root/workspace
 
