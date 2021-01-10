@@ -72,10 +72,10 @@ install_dependencies() {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # Set Vim as default editor
-    update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-    update-alternatives --set editor /usr/local/bin/vim
-    update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-    update-alternatives --set vi /usr/local/bin/vim
+#    update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+#    update-alternatives --set editor /usr/local/bin/vim
+#    update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+#    update-alternatives --set vi /usr/local/bin/vim
 
     # Docker and docker-compose installation
     curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker
