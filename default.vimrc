@@ -24,7 +24,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
-Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
 Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
