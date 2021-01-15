@@ -46,7 +46,8 @@ check_version() {
 install_dependencies() {
     apt-get update
     apt-get -y install git curl wget zsh locales xclip vim
-    locale-gen en_US.UTF-8
+    # Set the locale
+    sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
     # NeoVim install
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
