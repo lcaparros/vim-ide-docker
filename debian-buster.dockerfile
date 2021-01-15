@@ -12,6 +12,12 @@ FROM debian:buster
 
 # USER $USERNAME
 
+# Set the locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8
+
 COPY packages.sh packages.sh
 RUN ./packages.sh \
     # -t https://github.com/denysdovhan/spaceship-prompt \
@@ -27,6 +33,7 @@ RUN ./packages.sh \
     -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
 RUN rm packages.sh
 
+COPY aliases /root/.aliases
 COPY p10k.zsh /root/.p10k.zsh
 COPY zshrc /root/.zshrc
 

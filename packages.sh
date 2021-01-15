@@ -48,6 +48,12 @@ install_dependencies() {
     apt-get -y install git curl wget zsh locales xclip vim
     locale-gen en_US.UTF-8
 
+    # NeoVim install
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+    ./nvim.appimage --appimage-extract
+    mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim
+
     # Vim install
 #    apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev \
 #        libcairo2-dev libx11-dev libxpm-dev libxt-dev python2-dev \
@@ -69,7 +75,7 @@ install_dependencies() {
 
     # Vim plugin manager
     # https://github.com/junegunn/vim-plug
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # Set Vim as default editor
 #    update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
