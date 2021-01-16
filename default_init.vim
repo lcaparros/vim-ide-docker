@@ -11,7 +11,7 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
+" set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set encoding=utf-8
@@ -19,20 +19,22 @@ set encoding=utf-8
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'jremmen/vim-ripgrep'
+Plug 'joshdick/onedark.vim'         " Theme based in Atom colors
+Plug 'jremmen/vim-ripgrep'          "
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Valloric/YouCompleteMe', { 'commit':'d98f896' }
+Plug 'Yggdroot/indentLine'          " Line to see better indenting
+Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
 Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
-colorscheme wombat256mod
+" colorscheme onedark
 set background=dark
 
 let python_highlight_all = 1

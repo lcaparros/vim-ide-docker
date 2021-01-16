@@ -45,7 +45,7 @@ check_version() {
 
 install_dependencies() {
     apt-get update
-    apt-get -y install git curl wget zsh locales xclip vim
+    apt-get -y install git curl wget zsh locales xclip
     # Set the locale
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
@@ -53,36 +53,18 @@ install_dependencies() {
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod u+x nvim.appimage
     ./nvim.appimage --appimage-extract
+    CUSTOM_NVIM_PATH=/usr/bin/nvim
     mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim
-
-    # Vim install
-#    apt-get -y install libncurses5-dev libgtk2.0-dev libatk1.0-dev \
-#        libcairo2-dev libx11-dev libxpm-dev libxt-dev python2-dev \
-#        python3-dev ruby-dev lua5.2 liblua5.2-dev libperl-dev
-#    apt-get remove vim vim-runtime gvim
-#    git clone https://github.com/vim/vim.git
-#    cd vim
-#    ./configure --with-features=huge \
-#        --enable-multibyte \
-#        --enable-rubyinterp=yes \
-#        --enable-python3interp=yes \
-#        --with-python3-config-dir=$(python3-config --configdir) \
-#        --enable-perlinterp=yes \
-#        --enable-luainterp=yes \
-#        --enable-gui=gtk2 \
-#        --enable-cscope \
-#        --prefix=/usr/local
-#    make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
+    update-alternatives --install /usr/bin/ex ex "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vi vi "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
+    update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
+    apt-get -y install python3-neovim
 
     # Vim plugin manager
     # https://github.com/junegunn/vim-plug
-#    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # Set Vim as default editor
-#    update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-#    update-alternatives --set editor /usr/local/bin/vim
-#    update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-#    update-alternatives --set vi /usr/local/bin/vim
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     # Docker and docker-compose installation
     curl https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar xvz -C /tmp/ && mv /tmp/docker/docker /usr/bin/docker

@@ -36,9 +36,8 @@ COPY aliases /root/.aliases
 COPY p10k.zsh /root/.p10k.zsh
 COPY zshrc /root/.zshrc
 
-COPY default.vimrc /root/.vimrc
-COPY wombat256mod.vim /root/.vim/colors/wombat256mod.vim
-RUN mkdir /root/.vim/undodir && vim +PlugInstall +qall
+COPY default_init.vim /root/.config/nvim/init.vim
+RUN vim +PlugInstall +qall
 
 WORKDIR /root/workspace
 
