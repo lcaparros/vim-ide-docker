@@ -27,7 +27,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'          " Line to see better indenting
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
 Plug 'leafgarland/typescript-vim'
