@@ -49,6 +49,11 @@ install_dependencies() {
     # Set the locale
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
+    # NodeJs and nvm install
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.4.4/install.sh | bash
+    nvm install 14.15.4
+    nvm use 14.15.4
+
     # NeoVim install
     curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
     chmod u+x nvim.appimage
