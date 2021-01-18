@@ -50,7 +50,7 @@ install_dependencies() {
     sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
 
     # NodeJs and nvm install
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.4.4/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
     nvm install 14.15.4
     nvm use 14.15.4
 
