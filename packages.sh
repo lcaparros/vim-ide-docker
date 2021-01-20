@@ -58,7 +58,9 @@ install_dependencies() {
     nvm use 14.15.4
 
     # NeoVim install
-    curl -LO https://github.com/neovim/neovim/releases/download/v0.4.4/nvim.appimage
+    NEOVIM_VERSION="0.4.4"
+    curl -LO https://github.com/neovim/neovim/releases/download/v${NEOVIM_VERSION}/nvim.appimage
+    echo "NEOVIM_VERSION=${NEOVIM_VERSION}"
     chmod u+x nvim.appimage
     ./nvim.appimage --appimage-extract
     CUSTOM_NVIM_PATH=/usr/bin/nvim
