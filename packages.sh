@@ -70,7 +70,7 @@ install_dependencies() {
     update-alternatives --install /usr/bin/view view "${CUSTOM_NVIM_PATH}" 110
     update-alternatives --install /usr/bin/vim vim "${CUSTOM_NVIM_PATH}" 110
     update-alternatives --install /usr/bin/vimdiff vimdiff "${CUSTOM_NVIM_PATH}" 110
-    apt-get -y install python3-neovim
+#    apt-get -y install python3-neovim
 
     # Vim plugin manager
     # https://github.com/junegunn/vim-plug
